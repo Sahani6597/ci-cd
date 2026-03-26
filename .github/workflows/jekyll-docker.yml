@@ -1,0 +1,34 @@
+name: SSH to VM and Create File
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ssh-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: SSH into VM and Create File
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            echo "Connected to VM 🚀"
+            
+            # Navigate to directory (optional)
+            cd /home/${{ secrets.VM_USER }}
+
+            # Create file
+            echo "Hello from GitHub Actions" > test.txt
+
+            # Verify file
+            ls -l
+            cat test.txt
