@@ -34,7 +34,4 @@ jobs:
       - name : runnning in vm
         run : |
           ssh -i ${{secrets.SSH_PRIVATE_KEY}} azureuser@${{secrets.VM_HOST}}
-          cd ci-cd
-          sudo git pull
-          sudo docker run -d -p 80:5000 sahani6597/cicd:latest
-          echo "Deployemnt Success"
+          vim sahani.txt
