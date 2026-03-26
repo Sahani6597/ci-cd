@@ -31,7 +31,4 @@ jobs:
       - name: Push Docker Image
         run: |
           docker push sahani6597/cicd:latest
-      - name : runnning in vm
-        run : |
-          ssh -i ${{secrets.SSH_PRIVATE_KEY}} azureuser@${{secrets.VM_HOST}}
-          vim sahani.txt
+     
