@@ -6,29 +6,16 @@ on:
       - main
 
 jobs:
-  ssh-job:
+  my-job:
+    name: My Job
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: SSH into VM and Create File
-        uses: appleboy/ssh-action@v0.1.10
-        with:
-          host: ${{ secrets.VM_HOST }}
-          username: ${{ secrets.VM_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22
-          script: |
-            echo "Connected to VM 🚀"
-            
-            # Navigate to directory (optional)
-            cd /home/${{ secrets.VM_USER }}
-
-            # Create file
-            echo "Hello from GitHub Actions" > test.txt
-
-            # Verify file
-            ls -l
-            cat test.txt
+      - name: Print a greeting
+        env:
+          MY_VAR: "Hi there! My name is"
+          FIRST_NAME: "Mona"
+          MIDDLE_NAME: "The"
+          LAST_NAME: "Octocat"
+        run: |
+          echo $MY_VAR $FIRST_NAME $MIDDLE_NAME $LAST_NAME
