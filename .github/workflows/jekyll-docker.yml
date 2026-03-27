@@ -10,6 +10,7 @@ jobs:
     name: Build & Push
     runs-on: ubuntu-latest
 
+    
     steps:
       - name: logging into az
         uses: azure/login@v3
